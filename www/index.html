@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com http://www.tecnifer.com.ar http://192.168.0.11:8080/ http://192.168.0.14:8080/ http://192.168.0.17:8080/; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: *">
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/themes/themes.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" /> 
+    <link rel="stylesheet" href="css/themes/custom.css" />
+    
+    <title>11&ordf; RUEDA DE NEGOCIOS DE FERRETERÍA Y AFINES</title>
+</head>
+
+<body id="app-index">
+    <div class="app" id="parentDiv">
+        <div id="deviceready" class="blink">
+            <!-- <p id="waiting" class="event waiting">Iniciando...</p> -->
+            <!-- <p id="received" class="event received">Iniciando...</p> -->
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- initialize -->
+    <script type="text/javascript">
+        app.initialize();
+
+        // document.getElementById('waiting').setAttribute('style', 'display:none;');
+        // document.getElementById('received').setAttribute('style', 'display:block;');
+
+        var conEstado = localStorage.getItem("conEstado");
+
+        setTimeout( function(){ 
+
+            document.getElementById('parentDiv').setAttribute('style', 'opacity: 0;');
+
+            setTimeout( function(){
+                if( conEstado == null || conEstado == 0 ){
+                    document.location.href = 'login.html';
+                }else if ( conEstado == 1 ) {
+                    document.location.href = 'inicio.html';
+                }
+            }, 500 );
+
+        }, 500 );
+
+    </script>
+
+    
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com http://www.tecnifer.com.ar http://192.168.0.11:8080/ http://192.168.0.14:8080/ http://192.168.0.17:8080/; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: *">
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/themes/themes.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" /> 
+    <link rel="stylesheet" href="css/themes/custom.css" />
+    
+    <title>11&ordf; RUEDA DE NEGOCIOS DE FERRETERÍA Y AFINES</title>
+</head>
+
+<body style="opacity: 0;" class="index">
+
+	<div data-role="header" class="logo-header" id="inicio-header">
+		<div class="top">
+			<div class="logo">
+				<img id="fileImage" src="images/logo-rueda.png">
+			</div>
+		</div>
+	</div><!-- /header -->
+
+
+	<div data-role="page" data-theme="a" id="inicio">
+
+		<div role="main" class="ui-content">
+
+			<ul data-role="listview" data-filter="false">
+				<li data-icon="comment" class="postLanza">
+					<a data-transition="pop" class="page-change" data-ajax="false" href="eventos.html">
+						<h3>MIS ENTREVISTAS</h3>
+					</a>
+				</li>
+				<li data-icon="forbidden" class="postLanza">
+					<a data-transition="pop" class="page-change" data-ajax="false" href="noasignadas.html">
+						<h3>NO ASIGNADAS</h3>
+					</a>
+				</li>
+				<li data-icon="bullets">
+					<a data-transition="pop" class="page-change" data-ajax="false" href="participantes.html">
+						<h3>CATÁLOGO DE PARTICIPANTES</h3>
+					</a>
+				</li>
+				<li data-icon="user">
+					<a data-transition="pop" class="page-change mi-detalle abrir-detalle" data-ajax="false" href="detalle.html" data-catalogo="">
+						<h3>MIS DATOS</h3>
+					</a>
+				</li>
+				<li data-icon="clock" class="postLanza">
+					<a data-transition="pop" class="page-change" data-ajax="false" href="notificacion.html">
+						<h3>NOTIFICACIONES</h3>
+					</a>
+				</li>
+				<li data-icon="info">
+					<a data-transition="pop" class="page-change" data-ajax="false" href="manual.html">
+						<h3>MANUAL DEL USUARIO</h3>
+					</a>
+				</li>
+				<li data-icon="location">
+					<a class="maps" href="https://www.google.com.ar/maps/place/Goldencenter+Eventos/@-34.54827,-58.435967,15z/data=!4m5!3m4!1s0x0:0xad90f72012d90499!8m2!3d-34.54827!4d-58.435967" data-rel="external">
+						<h3>CÓMO LLEGAR</h3>
+					</a>
+				</li>
+				<li data-icon="action">
+					<a data-transition="pop" class="page-change" data-ajax="false" href="login.html">
+						<h3>SALIR</h3>
+					</a>
+				</li>
+			</ul>
+
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- initialize -->
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+    <script type="text/javascript" src="js/custom.js"></script>
+    
+
+</body>
+</html>
+

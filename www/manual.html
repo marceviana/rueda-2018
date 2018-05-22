@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com http://www.tecnifer.com.ar http://192.168.0.11:8080/ http://192.168.0.14:8080/ http://192.168.0.17:8080/; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: *">
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/themes/themes.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" /> 
+    <link rel="stylesheet" href="css/themes/custom.css" />
+    
+    <title>11&ordf; RUEDA DE NEGOCIOS DE FERRETERÍA Y AFINES</title>
+</head>
+
+<body style="opacity: 0;" class="eventos-body">
+
+	<div class="header" data-role="header" data-position="fixed" data-tap-toggle="false" data-theme="b" id="eventos-header">
+		<div data-role="navbar">
+			<h1>MANUAL DEL USUARIO</h1>
+			<a href="#rightpanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+			<a id="home-btn" href="inicio.html" data-ajax="false" class="page-change ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
+		</div><!-- /navbar -->		
+	</div><!-- /header -->
+
+<!-- menu -->
+<!-- rightpanel  -->
+	<div data-role="panel" id="rightpanel" data-position="right" data-display="push" data-theme="d">
+
+		<a href="inicio.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-home">INICIO</a>
+		<a href="eventos.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-comment postLanza">MIS ENTREVISTAS</a>
+		<a href="noasignadas.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-forbidden postLanza">NO ASIGNADAS</a>
+		<a href="participantes.html" data-ajax="false" class="page-change ui-btn ui-icon-bullets ui-btn-icon-right">Catálogo de Participantes</a>
+		<a href="detalle.html" class="abrir-detalle mi-detalle ui-btn page-change ui-icon-user ui-btn-icon-right" data-ajax="false">Mis Datos</a>
+		<a href="notificacion.html" class="page-change ui-btn ui-btn-icon-right ui-icon-clock postLanza">Notificaciones</a>
+		<a href="manual.html" class="page-change ui-btn ui-btn-icon-right ui-icon-info">Manual del Usuario</a>
+		<a href="https://www.google.com.ar/maps/place/Goldencenter+Eventos/@-34.54827,-58.435967,15z/data=!4m5!3m4!1s0x0:0xad90f72012d90499!8m2!3d-34.54827!4d-58.435967" data-rel="external" class="maps ui-btn ui-btn-icon-right ui-icon-location">Cómo llegar</a>
+		<a href="login.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-action">SALIR</a>
+		
+	</div><!-- /rightpanel -->
+<!-- fin menu -->
+
+	<div data-role="page" class="eventos eventos-detalle" data-title="TITLE" data-theme="c" id="manual" data-parent="MANUAL DEL USUARIO">
+
+		<div data-role="navbar" class="top-navbar">
+			<h2>11&ordf; Rueda de Negocios<span> de Ferretería y Afines</span></h2>
+			<a data-rel="back" class="ui-btn ui-icon-back ui-btn-icon-notext ui-corner-all ant-btn" data-direction="reverse" data-transition="slideup"></a>
+		</div>
+
+		<div role="main" class="ui-content">
+				
+			<div class="wraper font-15 margin-t-1">
+		      <div class="row fapp-text-c">
+		        <figure class="fapp-auto fapp-width-5">
+	                <img src="img/logo.png"><br>
+		        </figure>
+		      </div>
+
+		      <div class="row fapp-padding-h-1 fapp-padding-v-05 detalle-wraper">
+		        <div>
+					<h3>LE ROGAMOS LEER ATENTAMENTE ESTA INFORMACION</h3>
+		        	<p>Esta es la versión digital de la Agenda de Reuniones  para las jornadas del <b>30 de junio</b> y <b>1 de julio</b> de 2016.</p>
+		        	<p>LES RECORDAMOS QUE LOS HORARIOS CONSIGNADOS EN SU PLAN DE TRABAJO <b>NO PUEDEN SER CAMBIADOS</b>, TENIENDO EN CUENTA QUE ESTE ES EL RESULTADO MÁS OPTIMO QUE HA CONSEGUIDO EL SISTEMA DESPUES DE VARIOS TESTEOS. LA MODIFICACION DE HORARIO DE UNA SOLA ENTREVISTA, ES IMPOSIBLE YA QUE MODIFICARIA TODAS LAS AGENDAS, DE TODOS LOS PARTICIPANTES.</p>
+
+		        	<p><b>SUS AGENDAS DEFINITIVAS PARA LAS JORNADAS ESTARÁN DISPONIBLES  EN ESTA APLICACIÓN A PARTIR DEL  27/6/2016</b></p>
+
+		        	<p>Una copia impresa de este detalle le será entregada en su acreditación.</p>
+
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+		        	
+		        	<p>Es importante que recuerde su <b>número de Inscripción</b> para facilitar sus gestiones  en el ámbito de la Rueda:</p>
+		        	<p id="numeroOrden" class="fapp-text-c fapp-font-15"><b></b></p>
+
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+
+		        	<p><span>Las entrevistas de pedido <b>MUTUO</b> están identificadas con el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><img src="images/handshake-w.png"></span></div></div>
+		        	<br>
+		        	<p><span>Las entrevistas solicitadas <b>POR SU CONTRAPARTE</b> están identificadas con el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><img src="images/hand-right.png"></span></div></div>
+		        	<br>
+		        	<p><span>Las entrevistas pedidas <b>POR UD.</b> están identificadas con el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><img src="images/hand-left.png"></span></div></div>
+		        	<br>
+		        	<p><span>Las entrevistas de <b>COMERCIO EXTERIOR</b> están indicadas en color rojo con el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><img src="images/internacional.png"></span></div></div>
+		        	<br>
+
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+
+		        	<p><span>Los <b>FABRICANTES</b> están representados por el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><span class="fapp-icono-fab fapp-float-l"></span></span></div></div>
+		        	<br>
+		        	<p><span>Las empresas <b>MAYORISTAS</b> están representadas por el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><span class="fapp-icono-may fapp-float-l"></span></span></div></div>
+		        	<br>
+		        	<p><span>Las empresas <b>EXPORTADORAS</b> están representadas por el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><span class="fapp-icono-exp fapp-float-l"></span></span></div></div>
+		        	<br>
+		        	<p><span>Las empresas <b>IMPORTADORAS</b> están representadas por el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><span class="fapp-icono-imp fapp-float-l"></span></span></div></div>
+		        	<br>
+		        	<p><span>Los <b>REPRESENTANTES</b> están representados por el ícono:</span></p>
+		        	<div class="fapp-text-c"><div class="fapp-iblock"><span class="handshake fapp-circle fapp-bg-gray-dk"><span class="fapp-icono-rep fapp-float-l"></span></span></div></div>
+		        	<br>
+
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+
+		        	<p>Las agendas tienen una pantalla correspondiente al <b>JUEVES</b> y otra pantalla para el <b>VIERNES</b>.</p>
+		        	<div class="fapp-text-c">
+		        		<figure>
+		        			<img src="images/manual-fechas.png" alt="FECHAS">
+		        		</figure>
+		        	</div>
+		        	 
+
+		        	<p>Las empresas <b>MAYORISTAS</b> que trabajan en <b>mesas simultáneas</b>, tienen <b>UNA SOLAPA POR REPRESENTANTE</b>,  identificada con el <b>NÚMERO DE PARTICIPANTE</b>.</p>
+		        	<div class="fapp-text-c">
+		        		<figure>
+		        			<img src="images/manual-solapas.png" alt="SOLAPAS">
+		        		</figure>
+		        	</div>
+		        	 
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+
+		        	<h3>ENTREVISTAS DE COMERCIO EXTERIOR</h3>
+		        	<p>Si Ud. marcó la opción <b>SUPERPONER</b> entrevistas del exterior con las nacionales: tendrá 2 agendas simultáneas, indicadas con las solapas <b>NACIONAL</b> o <b>INTERNACIONAL</b>.</p>
+		        	<div class="fapp-text-c">
+		        		<figure>
+		        			<img src="images/manual-internacional.png" alt="INTERNACIONAL">
+		        		</figure>
+		        	</div>
+		        	 
+		        	<p>Si Ud. marcó la opción <b>NO SUPERPONER</b> entrevistas del exterior con las nacionales: Tendrá 1 sola agenda en la cual las entrevistas nacionales tienen <b>COLOR AZUL</b> e internacionales <b>COLOR ROJO</b>.</p>
+		        	<div class="fapp-text-c">
+		        		<figure>
+		        			<img src="images/manual-intercaladas.png" alt="INTERCALADAS">
+		        		</figure>
+		        	</div>
+		        	 
+
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+
+		        	<p>Finalizadas las jornadas, a partir del 7 de julio, les enviaremos por email, una base de datos completa de todos los participantes, incluyendo persona de contacto, domicilio, telf, mail, web, etc.</p>
+
+		        	<div class="fapp-border-gray-mk fapp-margin-v-1 fapp-border-b-1 fapp-padding-b-01"></div>
+
+		        </div>
+		      </div>
+		    </div>
+
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- initialize -->
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+    <script type="text/javascript" src="js/custom.js"></script>
+    
+    
+</body>
+
+</html>

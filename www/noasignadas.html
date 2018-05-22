@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com http://www.tecnifer.com.ar http://192.168.0.11:8080/ http://192.168.0.14:8080/ http://192.168.0.17:8080/; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: *">
+    
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/themes/themes.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" /> 
+    <link rel="stylesheet" href="css/themes/custom.css" />
+    
+    <title>11&ordf; RUEDA DE NEGOCIOS DE FERRETERÍA Y AFINES</title>
+</head>
+
+<body style="opacity: 0;" class="eventos-body">
+
+	<div class="header" data-role="header" data-position="fixed" data-tap-toggle="false" data-theme="b" id="eventos-header">
+		<div data-role="navbar">
+			<h1>NO ASIGNADAS</h1>
+			<a href="#rightpanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all"></a>
+			<a id="home-btn" href="inicio.html" data-ajax="false" class="page-change ui-btn ui-icon-home ui-btn-icon-notext ui-corner-all"></a>
+			<ul>
+				<li><a data-theme="b" href="#propias" class="" data-transition="flip">PEDIDAS POR MI</a></li>
+				<li><a data-theme="b" href="#ajenas" class="" data-transition="flip">PIDIERON POR MI</a></li>
+			</ul>
+		</div><!-- /navbar -->		
+	</div><!-- /header -->
+
+<!-- menu -->
+	<!-- rightpanel  -->
+	<div data-role="panel" id="rightpanel" data-position="right" data-display="push" data-theme="d">
+
+		<a href="inicio.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-home">INICIO</a>
+		<a href="eventos.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-comment postLanza">MIS ENTREVISTAS</a>
+		<a href="noasignadas.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-forbidden postLanza">NO ASIGNADAS</a>
+		<a href="participantes.html" data-ajax="false" class="page-change ui-btn ui-icon-bullets ui-btn-icon-right">Catálogo de Participantes</a>
+		<a href="detalle.html" class="abrir-detalle mi-detalle ui-btn page-change ui-icon-user ui-btn-icon-right" data-ajax="false">Mis Datos</a>
+		<a href="notificacion.html" class="page-change ui-btn ui-btn-icon-right ui-icon-clock postLanza">Notificaciones</a>
+		<a href="manual.html" class="page-change ui-btn ui-btn-icon-right ui-icon-info">Manual del Usuario</a>
+		<a href="https://www.google.com.ar/maps/place/Goldencenter+Eventos/@-34.54827,-58.435967,15z/data=!4m5!3m4!1s0x0:0xad90f72012d90499!8m2!3d-34.54827!4d-58.435967" data-rel="external" class="maps ui-btn ui-btn-icon-right ui-icon-location">Cómo llegar</a>
+		<a href="login.html" data-ajax="false" class="page-change ui-btn ui-btn-icon-right ui-icon-action">SALIR</a>
+		
+	</div><!-- /rightpanel -->
+	<!-- fin menu -->
+
+	<div data-role="page" id="noasignadas-placeholder" data-title="PEDIDAS POR MI" data-theme="a" class="eventos noasignadas eventos-lista" data-parent="NO ASIGNADAS" data-ready="false">
+		
+	    <div class="ui-content" role="main">
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	<div data-role="page" id="propias" data-title="PEDIDAS POR MI" data-theme="b" class="eventos noasignadas eventos-lista" data-parent="NO ASIGNADAS" data-ready="false">
+		
+	    <div class="ui-content" role="main">
+			<ul data-role="listview" class="listview lista-alternada" data-filter="true" data-filter-placeholder="Filtrar..."></ul>
+
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	<div data-role="page" id="ajenas" data-title="PIDIERON POR MI" data-theme="b" class="eventos noasignadas eventos-lista" data-parent="NO ASIGNADAS" data-ready="false">
+		
+	    <div class="ui-content" role="main">
+			<ul data-role="listview" class="listview lista-alternada" data-filter="true" data-filter-placeholder="Filtrar..."></ul>
+
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	<div data-role="page" class="eventos eventos-detalle" id="detalle" data-title="" data-theme="c" data-parent="NO ASIGNADAS">
+
+		<div data-role="navbar" class="top-navbar">
+			<h2><span></span></h2>
+			<a data-rel="back" class="ui-btn ant-btn ui-icon-back ui-btn-icon-notext ui-corner-all" data-direction="reverse" data-transition="slide"></a>
+		</div>
+
+		<div role="main" class="ui-content">
+				
+			<h3 id="tituloCod"></h3>
+
+			<div class="wraper font-15 margin-t-1 shadow-lt bg-white">
+		      <div class="row fapp-text-c fapp-bg-white shadow-lt">
+		        <figure class="col-1 max-all">
+	                <img id="fotoCatalogo" src="images/fotos/cd-00155.jpg"><br>
+		        </figure>         
+		      </div>
+		      <div class="row bg-gray-dk fapp-padding-h-05 fapp-padding-l-1 text-white detalle-subtitulos">
+		          <strong class="fapp-padding-l-1 fapp-padding-v-04" id="nombreCatalogo"></strong>
+		      </div>
+		      <div class="row bg-gray-mm fapp-padding-h-05 fapp-padding-l-1 detalle-subtitulos">
+		          <strong class="fapp-padding-l-1 fapp-padding-v-04" id="categos"></strong>
+		      </div>
+		      <div class="row bg-gray-ml fapp-padding-h-05 fapp-padding-l-1 detalle-subtitulos">
+		          <strong class="fapp-padding-l-1 fapp-padding-v-04" id="localidad"></strong>
+		      </div>
+		      <div class="row fapp-padding-h-1 fapp-padding-l-2 fapp-padding-v-05 detalle-wraper">
+		        <div class="detalle-desc-borde bg-gray-ml"></div>
+		        <div id="detalle-desc"></div>
+		      </div>
+		    </div>
+
+		</div><!-- /content -->
+
+	</div>
+
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- initialize -->
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+    <script type="text/javascript" src="js/custom.js"></script>
+    
+    
+</body>
+
+</html>
