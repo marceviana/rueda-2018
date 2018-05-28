@@ -1,10 +1,37 @@
 
-var urlActual = document.location.href;
-var loginPage = urlActual.indexOf('login.html') >= 0;
-var homePage = urlActual.indexOf('inicio.html') >= 0;
+var ferreUsers = ['04836','04567'];
+var ferrePass = ['R7LMB','111706'];
 
-var versionApp = '1.1.1';
+var versionApp = '1.1.3';
 var versionCatalogo = 2;
+var APP_TITLE = '12ª Rueda de Negocios';
+var anioRueda = '2018';
+var fechaLanzaISO = '2018-05-24';
+
+var fechasRueda = {
+    0: { 
+        iso: '2018-05-31',
+        mes: '05',
+        dia: '31',
+        diaSlug: 'jue',
+        diaNombre: 'jueves',
+        mesNombre: 'Mayo',
+    },
+    1: { 
+        iso: '2018-06-01',
+        mes: '06',
+        dia: '01',
+        diaSlug: 'vie',
+        diaNombre: 'viernes',
+        mesNombre: 'Junio',
+    },
+};
+
+Object.keys(fechasRueda).forEach(function(key, index){
+    var item = fechasRueda[key];
+    fechasRueda[item.iso] = fechasRueda[key];
+})
+
 var ultimoCatalogo = localStorage.getItem('versionCatalogo');
 
 if( ultimoCatalogo == null || ultimoCatalogo == undefined ){
@@ -12,6 +39,10 @@ if( ultimoCatalogo == null || ultimoCatalogo == undefined ){
 }else if ( parseInt(ultimoCatalogo) > versionCatalogo ){
     versionCatalogo = ultimoCatalogo;
 };
+
+var urlActual = document.location.href;
+var loginPage = urlActual.indexOf('login.html') >= 0;
+var homePage = urlActual.indexOf('inicio.html') >= 0;
 
 var isAndroid;
 var isIOS;
@@ -51,7 +82,6 @@ var misdatos = {};
 var fileData = null;
 
 var notificaciones = {};
-var fechasRueda = [];
 var fotosCatalogo = [];
 var fotosTimeout;
 
@@ -61,14 +91,8 @@ var razonSocial = '';
 var codCatalogo = '';
 var codRepresentante = '';
 
-var ferreUsers = ['04836','04567'];
-var ferrePass = ['R7LMB','111706'];
-
-fechasRueda[0] = { iso: '2016-06-30' };
-fechasRueda[1] = { iso: '2016-07-01' };
-
 var hoyDateObj = new Date();
-var fechaLanzaObj = new Date('2016-06-29');
+var fechaLanzaObj = new Date(fechaLanzaISO);
 fechaLanzaObj.setMinutes(fechaLanzaObj.getMinutes() + fechaLanzaObj.getTimezoneOffset());
 
 var bajarJSONCount = 0;
@@ -449,8 +473,8 @@ document.addEventListener("deviceready", function(){
 
             navigator.notification.confirm(
                 '¿Desea recibir notificaciones momentos antes de sus entrevistas con los datos de su contraparte? Ud. puede cambiar esta configuración posteriormente.', // message
-                 onConfirm,                 // callback to invoke with index of button pressed
-                '11ª Rueda de Negocios',    // title
+                onConfirm,                 // callback to invoke with index of button pressed
+                APP_TITLE,                   // title
                 ['Sí','No, Gracias']        // buttonLabels
             );
 
@@ -458,16 +482,14 @@ document.addEventListener("deviceready", function(){
 
         var update = localStorage.getItem('updated') == 0;
 
-        if( hoyDateObj >= fechaLanzaObj && update ){
-            
-            // console.log('hoyDateObj >= fechaLanzaObj && update');
+        // if( hoyDateObj >= fechaLanzaObj && update ){
             
             bajarJSON(null,true,false,function(){
                 localStorage.setItem('updated',1);
-                notificar('11ª Rueda de Negocios', 'Sus entrevistas ya están disponibles en la aplicación');
+                // notificar(APP_TITLE, 'Sus entrevistas ya están disponibles en la aplicación');
             });
 
-        };
+        // };
 
         chequearVersion();
 
@@ -516,7 +538,7 @@ $(document).on('click','.logo, h1',function(event){
         mensaje += ' / ';
         mensaje += 'Actualizada: '+localStorage.getItem('updated');
 
-        navigator.notification.alert(mensaje, function(){}, '11ª Rueda de Negocios', 'Aceptar');
+        navigator.notification.alert(mensaje, function(){}, APP_TITLE, 'Aceptar');
     }
     setTimeout( function(){ 
         clickCount=0;
@@ -603,7 +625,10 @@ $(document).on("pagebeforeshow","#all",function(){
             if (isDefined(agenda[i].at)) {
 
                 var localeString = scheduled.toLocaleString();
-                var dia = hasStr(localeString,'30/') ? 'JUE' : 'VIE' ;
+                var ISOString = scheduled.toISOString();
+                var Y_M_D = ISOString.split('T')[0];
+
+                var dia = fechasRueda[Y_M_D].diaSlug.toLowerCase();
                 var mesa = agenda[i].title.split('MESA')[1];
                 var horario = agenda[i].title.split('| MESA')[0];
                 var empresa = agenda[i].text;
@@ -635,7 +660,9 @@ $(document).on("pagebeforeshow","#pending",function(){
             if( hoy < scheduled ){
 
                 var ISOString = scheduled.toISOString();
-                var dia = hasStr(ISOString,'06-30') ? 'JUE' : 'VIE' ;
+                var Y_M_D = ISOString.split('T')[0];
+
+                var dia = fechasRueda[Y_M_D].diaSlug.toLowerCase();
                 var mesa = agenda[i].title.split('MESA')[1];
                 var horario = agenda[i].title.split('| MESA')[0];
                 var empresa = agenda[i].text;
@@ -813,7 +840,7 @@ $( document ).on( "pagecreate", "#catalogo", function(e,ui) {
 
         if (timer>=30) {
             clearInterval(estadoIntVal);
-            navigator.notification.alert('No se pudo cargar la página correctamente. Vuelva al inicio e intente nuevamente.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+            navigator.notification.alert('No se pudo cargar la página correctamente. Vuelva al inicio e intente nuevamente.', function(){}, APP_TITLE, 'Aceptar');
         }
         timer++;
     }, 500 );
@@ -881,7 +908,7 @@ $( document ).on( "pagecreate", ".noasignadas", function(e,ui) {
 
         if (timer>=30) {
             clearInterval(estadoIntVal);
-            navigator.notification.alert('No se pudo cargar la página correctamente. Vuelva al inicio e intente nuevamente.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+            navigator.notification.alert('No se pudo cargar la página correctamente. Vuelva al inicio e intente nuevamente.', function(){}, APP_TITLE, 'Aceptar');
         }
         timer++;
     }, 500 );
@@ -920,7 +947,7 @@ $( document ).on( "pagecreate", "#placeholder", function(e,ui) {
             var primerFechaDateObj = new Date(fechasRueda[0].iso);
             primerFechaDateObj.setMinutes(primerFechaDateObj.getMinutes() + primerFechaDateObj.getTimezoneOffset());
 
-            var fechaDefault = (hoyDateObj <= primerFechaDateObj) ? 'jue' : 'vie' ;
+            var fechaDefault = (hoyDateObj <= primerFechaDateObj) ? fechasRueda[0].diaSlug : fechasRueda[0].diaSlug;
             var redirectPageID = '#'+codRepresentante+'-'+fechaDefault;
 
             if (!$(redirectPageID).length) {
@@ -939,7 +966,7 @@ $( document ).on( "pagecreate", "#placeholder", function(e,ui) {
         
         if (timer>=30) {
             clearInterval(estadoIntVal);
-            navigator.notification.alert('No se pudo cargar la página correctamente. Vuelva al inicio e intente nuevamente.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+            navigator.notification.alert('No se pudo cargar la página correctamente. Vuelva al inicio e intente nuevamente.', function(){}, APP_TITLE, 'Aceptar');
         }
         timer++;
     }, 500 );
@@ -1031,11 +1058,12 @@ $( document ).on( "pagebeforeshow", '#detalle', function(e,ui) {
             horario = (parseInt(horario)<=12) ? horario + ' AM' : horario + ' PM' ;
             
             // NAV-BAR
-            var fechaStr = estaFecha == 'jue' ? 'Jueves' : 'Viernes' ;
-            var diaStr = estaFecha == 'jue' ? '30' : '01' ;
-            var mesStr = estaFecha == 'jue' ? 'Junio' : 'Julio' ;
+            var day = estaFecha == 'jue' ? 0 : 1;
+            var fechaStr = fechasRueda[day].diaNombre;
+            var diaStr = fechasRueda[day].dia;
+            var mesStr = fechasRueda[day].mesNombre;
             
-            navbar.find('h2').html(fechaStr+' '+diaStr+' <span>de '+mesStr+' de 2016</span>');
+            navbar.find('h2').html(fechaStr+' '+diaStr+' <span>de '+mesStr+' de '+anioRueda+'</span>');
             $('.ui-content > h3').css('margin-top','1.5em');
 
             $('strong.horario').text(horario);
@@ -1236,13 +1264,13 @@ function loginRueda(user,pass){
 
                 }else if(conEstado == 0) {
 
-                    navigator.notification.alert("Datos incorrectos. Pruebe nuevamente.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                    navigator.notification.alert("Datos incorrectos. Pruebe nuevamente.", function(){}, APP_TITLE, 'Aceptar');
                     localStorage.setItem("conEstado", 0);
                     $.mobile.loading('hide');
 
                 }else{
 
-                    navigator.notification.alert("No fue posible ingresar. Pruebe nuevamente.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                    navigator.notification.alert("No fue posible ingresar. Pruebe nuevamente.", function(){}, APP_TITLE, 'Aceptar');
                     localStorage.setItem("conEstado", 0);
                     $.mobile.loading('hide');
 
@@ -1250,7 +1278,7 @@ function loginRueda(user,pass){
 
             },
             error: function(error){
-                navigator.notification.alert('No fue posible realizar el ingreso por problemas de conexión. Intente nuevamente o aguarde e intente más tarde.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                navigator.notification.alert('No fue posible realizar el ingreso por problemas de conexión. Intente nuevamente o aguarde e intente más tarde.', function(){}, APP_TITLE, 'Aceptar');
                 $.mobile.loading('hide');
             }
         });
@@ -1281,7 +1309,7 @@ function establecerRepresentante(dataJSON){
                 representanteIsReady = true;
                 
              },                 
-            '11ª Rueda de Negocios',    // title
+            APP_TITLE,                   // title
             representantes              // buttonLabels
         );
 
@@ -1319,6 +1347,9 @@ function bajarJSON(numeroOrden,writeNew,redirect,callback){
 
             if (timer == 0 && numeroOrden !== undefined && numeroOrden !== null ) {
 
+                var fotosArr = [];
+                var noFotosArr = [];
+                var noImageCount = 0;
                 var catalogoURL = 'http://www.tecnifer.com.ar/rueda/app/data.php?numeroOrden='+numeroOrden;
 
                 $.ajax({
@@ -1329,6 +1360,9 @@ function bajarJSON(numeroOrden,writeNew,redirect,callback){
                     },
                     dataType: 'jsonp',
                     success: function(dataJSON) {
+
+                        // console.log('dataJSON');
+                        // console.log(dataJSON);
 
                         if ( !$.isEmptyObject(dataJSON) && 'catalogo' in dataJSON && 'entrevistas' in dataJSON && 'misdatos' in dataJSON && 'noAsignadas' in dataJSON){
 
@@ -1345,10 +1379,16 @@ function bajarJSON(numeroOrden,writeNew,redirect,callback){
 
                                 if( catalogoE != undefined && 'fotoCatalogo' in catalogoE ){
                                     var fotoCatalogo = catalogoE['fotoCatalogo'];
+                                    var fotoSRC = 'images/fotos/nofoto.png';
                                     if ( hasStr(fotoCatalogo,'/nofoto/') ) {
-                                        var fotoSRC = fotoCatalogo.replace('http://www.tecnifer.com.ar/rueda/img/nofoto/','images/fotos/');
+                                        fotoSRC = fotoCatalogo.replace('http://www.tecnifer.com.ar/rueda/img/nofoto/','images/fotos/');
+                                        noFotosArr.push(fotoSRC)
+                                    }else
+                                    if ( hasStr(fotoCatalogo,'/fotos/') ) {
+                                        fotoSRC = fotoCatalogo.replace('http://www.tecnifer.com.ar/rueda/img/fotos/','images/fotos/');
+                                        fotosArr.push(fotoSRC)
                                     }else{
-                                        var fotoSRC = fotoCatalogo.replace('http://www.tecnifer.com.ar/rueda/img/fotos/','images/fotos/');
+                                        noImageCount++;                                        
                                     }
                                     dataJSON.catalogo[codCatalogoE]['fotoCatalogo'] = fotoSRC;
                                 }
@@ -1378,9 +1418,8 @@ function bajarJSON(numeroOrden,writeNew,redirect,callback){
                                         var update = localStorage.getItem('updated') == 0;
 
                                         if( hoyDateObj >= fechaLanzaObj && update ){
-                                            // console.log('bajarJSON=> hoyDateObj >= fechaLanzaObj');
                                             localStorage.setItem('updated',1);
-                                            // notificar('11ª Rueda de Negocios', 'Sus entrevistas ya están disponibles en la aplicación');
+                                            // notificar(APP_TITLE, 'Sus entrevistas ya están disponibles en la aplicación');
                                         }
 
                                     });
@@ -1392,9 +1431,15 @@ function bajarJSON(numeroOrden,writeNew,redirect,callback){
 
                         }
 
+                        // console.log('fotosArr');
+                        // console.log(fotosArr);
+                        // console.log('noFotosArr');
+                        // console.log(noFotosArr);
+                        // console.log('noImageCount: ' + noImageCount);
+
                     },
                     error: function(error){
-                        navigator.notification.alert("Para ingresar es necesario una conexión a internet.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                        navigator.notification.alert("Para ingresar es necesario una conexión a internet.", function(){}, APP_TITLE, 'Aceptar');
                     }
                 });
 
@@ -1418,7 +1463,7 @@ function bajarJSON(numeroOrden,writeNew,redirect,callback){
 
             if ( timer>=60 && ( !entrevistasIsWritten || !noAsignadasIsWritten || !catalogoIsWritten ) ) {
                 clearInterval(estadoIntVal);
-                navigator.notification.alert('No se pudo cargar la aplicación correctamente. Ud. será redireccionado a la página de login.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                navigator.notification.alert('No se pudo cargar la aplicación correctamente. Ud. será redireccionado a la página de login.', function(){}, APP_TITLE, 'Aceptar');
                 document.location.href = 'login.html';
             }
 
@@ -1449,7 +1494,7 @@ function chequearVersion(){
             if (seccion == '') seccion = 'html';
 
             if ( isDefined(mensaje) && hasStr(urlActual,seccion) ) {
-                navigator.notification.alert(mensaje, function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                navigator.notification.alert(mensaje, function(){}, APP_TITLE, 'Aceptar');
             }
 
             var mensajes = data.notificacion;
@@ -1514,7 +1559,7 @@ function chequearVersion(){
                     var mensaje = esteMensaje.mensaje;
 
                     if (fechaISO.length == 10 && horarioHM.length == 5) {
-                        prepararNotificacion(id, '11ª Rueda de Negocios', mensaje, fechaISO, horarioHM, { cancelable: false });
+                        prepararNotificacion(id, APP_TITLE, mensaje, fechaISO, horarioHM, { cancelable: false });
                     }
 
                 }
@@ -1553,7 +1598,7 @@ function chequearVersion(){
                     // console.log('versionUltimaInt: '+versionUltimaInt);
 
                     if( versionAppInt < versionUltimaInt ){
-                        navigator.notification.alert('La versión de la aplicación instalada en su dispositivo puede contener errores. Por favor actualice la misma ingresando a google play desde su dispositivo.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                        navigator.notification.alert('La versión de la aplicación instalada en su dispositivo puede contener errores. Por favor actualice la misma ingresando a google play desde su dispositivo.', function(){}, APP_TITLE, 'Aceptar');
                     }
                     
                 }else{
@@ -1566,7 +1611,7 @@ function chequearVersion(){
 
                     if( versionAppInt < versionUltimaInt ){
                         // console.log('versionAppInt < versionUltimaInt ');
-                        navigator.notification.alert('Ud. no está utilizando la última versión de la aplicación. Por favor actualice la misma ingresando a google play desde su dispositivo.', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                        navigator.notification.alert('Ud. no está utilizando la última versión de la aplicación. Por favor actualice la misma ingresando a google play desde su dispositivo.', function(){}, APP_TITLE, 'Aceptar');
                     };
 
                 }
@@ -1871,7 +1916,7 @@ function agendarNotificaciones(){
                     }
                     else
                     {
-                        navigator.notification.alert("Para recibir notificaciones de eventos es necesario activar estos permisos.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+                        navigator.notification.alert("Para recibir notificaciones de eventos es necesario activar estos permisos.", function(){}, APP_TITLE, 'Aceptar');
                     }
                 });
               }
@@ -1911,7 +1956,7 @@ function editarNotificacion(id, title, text, at, data){
 
 function cancelarNotificacion(id){
     cordova.plugins.notification.local.cancel(id, function() {
-        navigator.notification.alert('La notificación fue desactivada', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+        navigator.notification.alert('La notificación fue desactivada', function(){}, APP_TITLE, 'Aceptar');
     });
 }
 
@@ -1954,7 +1999,7 @@ function desactivarNotificaciones(alerta){
             notificaciones.on = 2;
             localJSON.set("notificaciones", notificaciones);
 
-            if(alerta) navigator.notification.alert('Las notificaciones fueron desactivadas', function(){}, '11ª Rueda de Negocios', 'Aceptar');
+            if(alerta) navigator.notification.alert('Las notificaciones fueron desactivadas', function(){}, APP_TITLE, 'Aceptar');
 
         }, this);
     }
@@ -1978,7 +2023,7 @@ function add_reminder()
 
     if(date == "" || time == "" || title == "" || message == "")
     {
-      navigator.notification.alert("Todos los campos deben ser informados.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+      navigator.notification.alert("Todos los campos deben ser informados.", function(){}, APP_TITLE, 'Aceptar');
       return;
     }
 
@@ -1986,7 +2031,7 @@ function add_reminder()
     schtime = new Date(schtime);
 
     add_notification(title, message, schtime);
-    navigator.notification.alert("Notificación agregada.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+    navigator.notification.alert("Notificación agregada.", function(){}, APP_TITLE, 'Aceptar');
 
 }
 
@@ -2010,7 +2055,7 @@ function add_notification(title, message, schtime)
             }
             else
             {
-              navigator.notification.alert("Para recibir notificaciones de eventos es necesario activar estos permisos.", function(){}, '11ª Rueda de Negocios', 'Aceptar');
+              navigator.notification.alert("Para recibir notificaciones de eventos es necesario activar estos permisos.", function(){}, APP_TITLE, 'Aceptar');
             }
         });
       }
@@ -2110,25 +2155,27 @@ function generarEntrevistas(writeNew, callback) {
 
             for (var estaFecha in entrevistas ){
 
-                var fechaStr = estaFecha == 'jue' ? 'Jueves' : 'Viernes' ;
-                var diaStr = estaFecha == 'jue' ? '30' : '01' ;
-                var mesStr = estaFecha == 'jue' ? 'Junio' : 'Julio' ;
-                var btnStr = estaFecha == 'jue' ? 'prox' : 'ant' ;
-                var attr = estaFecha == 'jue' ? 'class="ui-content" role="main" id="jue"' : 'data-role="panel" id="vie"' ;
-                var iconStr = estaFecha == 'jue' ? 'ui-icon-carat-r' : 'ui-icon-carat-l' ;
-                var dia = estaFecha == 'jue' ? 1 : 2 ;
+                var day = estaFecha == 'jue' ? 0 : 1;
+                var fechaStr = fechasRueda[day].diaNombre;
+                var diaStr = fechasRueda[day].dia;
+                var mesStr = fechasRueda[day].mesNombre;
+
+                var btnStr = day == 0 ? 'prox' : 'ant' ;
+                var attr = day == 0 ? 'class="ui-content" role="main" id="jue"' : 'data-role="panel" id="vie"' ;
+                var iconStr = day == 0 ? 'ui-icon-carat-r' : 'ui-icon-carat-l' ;
+                var dia = day == 0 ? 1 : 2 ;
 
                 for (var esteRepresentante in entrevistas[estaFecha] ){
 
-                    var cambioFechaStr = estaFecha == 'jue' ? esteRepresentante+'-vie' : esteRepresentante+'-jue' ;
-                    var fechaAttrStr = estaFecha == 'jue' ? '' : ' data-direction="reverse"' ;
+                    var cambioFechaStr = day == 0 ? esteRepresentante+'-vie' : esteRepresentante+'-jue' ;
+                    var fechaAttrStr = day == 0 ? '' : ' data-direction="reverse"' ;
 
                     representantes.pushNew(esteRepresentante);
 
                     entrevistasHTML += '<div data-role="page" data-title=" '+esteRepresentante+'" data-theme="b" class="eventos eventos-lista" data-cod="'+esteRepresentante+'" data-parent="MIS ENTREVISTAS" id="'+esteRepresentante+'-'+estaFecha+'" data-fecha="'+estaFecha+'" data-ready="true">';
                         
                     entrevistasHTML += '<div data-role="navbar" class="top-navbar ui-navbar" role="navigation">';
-                    entrevistasHTML += '<h2>'+fechaStr+' '+diaStr+' <span>de '+mesStr+' de 2016</span></h2>';
+                    entrevistasHTML += '<h2>'+fechaStr+' '+diaStr+' <span>de '+mesStr+' de '+anioRueda+'</span></h2>';
                     entrevistasHTML += '<a href="#'+cambioFechaStr+'" class="ui-btn '+iconStr+' ui-btn-icon-notext ui-corner-all fecha-btn '+btnStr+'-btn" data-transition="slide" '+fechaAttrStr+' data-iconpos="notext"></a>';
                     entrevistasHTML += '</div>';
 
@@ -2140,6 +2187,7 @@ function generarEntrevistas(writeNew, callback) {
                         var estaEntrevista = entrevistas[estaFecha][esteRepresentante][index];
                         var fecha = estaEntrevista.fecha;
                         var horario = estaEntrevista.horario;
+                        var almuerzo = estaEntrevista.almuerzo;
 
                         var codCatalogoE = estaEntrevista.codCatalogo;
 
@@ -2148,7 +2196,7 @@ function generarEntrevistas(writeNew, callback) {
                         }
                         codCatalogoE = parseInt(codCatalogoE);
 
-                        if(codCatalogoE==1) {
+                        if(almuerzo==1) {
                 
                              entrevistasHTML += '<li class="break">ALMUERZO<p class="ui-li-aside"><strong>'+horario+'</strong> PM</p></li>';
 

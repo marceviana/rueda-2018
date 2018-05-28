@@ -19,7 +19,7 @@
 
 // Git Bash
 // --------------
-// phonegap create rueda --id "ar.com.elferretero" --name "11ª Rueda de Nogocios de Ferretería y Afines" --template phonegap-template-push
+// phonegap create rueda --id "ar.com.elferretero" --name "12ª Rueda de Nogocios de Ferretería y Afines" --template phonegap-template-push
 
 // cd myApp/
 // phonegap serve
@@ -28,7 +28,7 @@
 // deiZxzG8nMQ:APA91bF3IS-Mber3lo8mN2ZW0Yc5riNB8RwY_xjzSbdxIW6Tql-ty4jeBq2laMZrVqU09EuNxt_LT-m65eZCNQX7gKW_cdfTjg1fqkq93v8ZDMUllVtcqFVj-2Z53aKHLQtvKSABLakS
 
 // // push
-// phonegap push --deviceID deiZxzG8nMQ:APA91bF3IS-Mber3lo8mN2ZW0Yc5riNB8RwY_xjzSbdxIW6Tql-ty4jeBq2laMZrVqU09EuNxt_LT-m65eZCNQX7gKW_cdfTjg1fqkq93v8ZDMUllVtcqFVj-2Z53aKHLQtvKSABLakS --service gcm --payload '{ "data": { "title": "11ª Rueda de Negocios de Ferreterías y Afines", "message": "Bienvenido a la 11ª Rueda. Sus entrevistas ya están disponibles."} }'
+// phonegap push --deviceID deiZxzG8nMQ:APA91bF3IS-Mber3lo8mN2ZW0Yc5riNB8RwY_xjzSbdxIW6Tql-ty4jeBq2laMZrVqU09EuNxt_LT-m65eZCNQX7gKW_cdfTjg1fqkq93v8ZDMUllVtcqFVj-2Z53aKHLQtvKSABLakS --service gcm --payload '{ "data": { "title": "12ª Rueda de Negocios de Ferreterías y Afines", "message": "Bienvenido a la 12ª Rueda. Sus entrevistas ya están disponibles."} }'
 
 
 var app = {
